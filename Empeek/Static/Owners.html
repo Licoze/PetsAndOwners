@@ -1,0 +1,26 @@
+﻿<div ng-controller="OwnersController">
+    <h2>All Users</h2>
+    <input type="text" ng-model="name" placeholder="Enter pet owner`s name" />
+    <input type="button" ng-click="AddOwner(name)" value="Add" />
+    <hr />
+    <h2 ng-model="RowsCount">Total owners:{{RowsCount}}</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th colspan="2">Pets Count</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr dir-paginate="owner in Owners|itemsPerPage:3">
+                <td><a href="#!/Owners/{{owner.OwnerId}}/Pets">{{owner.Name}}</a></td>
+                <td>{{owner.PetCount}}</td>
+                <td><input type="button" ng-click="DeleteOwner($index)" value="Delete" /></td>
+            </tr>
+        </tbody>
+    </table>
+    <dir-pagination-controls max-size="5"
+                             direction-links="true"
+                             boundary-links="true">
+    </dir-pagination-controls>
+</div>
